@@ -10,12 +10,17 @@
 <?php
 include "db.php";
 
-//Build Query
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-  }
-    echo "Connected successfully!";
-?>
+$sql = "SELECT userID, fname, lname, email FROM accounts";
+$result = $conn->query($sql);
 
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "ID: " . $row["userID"]. " - Name: " . $row["fname"]. " " . $row["lname"]. " ". "Email: ". $row["email"]. "<br>";
+  }
+} else {
+  echo "0 results";
+}
+?>
 </body>
 </html>

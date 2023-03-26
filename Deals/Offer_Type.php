@@ -2,7 +2,7 @@
 
 namespace Deals;
 
-enum Store_Name{
+enum Offer_Type{
     case BOGO;
     case CLUBCARD;
 }
