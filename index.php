@@ -9,21 +9,21 @@
 <body>
       <center>
          <h1>MarketMatchers</h1>
-         <form action="login.php" method="post">
+         <form action="register.php" method="post">
              
-<p>
+            <p>
                <label for="firstName">First Name:</label>
                <input type="text" name="first_name" id="firstName">
             </p>
  
              
-<p>
+            <p>
                <label for="lastName">Last Name:</label>
                <input type="text" name="last_name" id="lastName">
             </p>
  
              
-<p>
+            <p>
                <label for="emailAddress">Email Address:</label>
                <input type="text" name="email" id="emailAddress">
             </p>

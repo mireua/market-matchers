@@ -3,41 +3,45 @@ namespace People;
 
 class Account extends \db{
 
-    /**
-     * @return string
-     */
     public function getFname(string $name): void
     {
         $sql = "SELECT * FROM accounts WHERE fname = '$name'";
         $result = $this->connection()->query($sql);
 
         if ($result->num_rows > 0) {
-            // output data of each row
             while($row = $result->fetch_assoc()) {
             echo $row['fname']. " " .$row['lname']. " " . $row['email']. " ". "<br>";
             }
-          } else {
+        } else {
             echo $name . " was not found!";
         }
     }
 
-    /**
-     * @param string $fname
-     */
     public function setFname(string $fname, string $change): void
     {
-        $sql = "UPDATE accounts set fname = '$change' WHERE fname = '$fname' ";
+        $sql = "UPDATE accounts SET fname = '$change' WHERE fname = '$fname' ";
+        $select = "SELECT * FROM accounts WHERE fname = '$fname'";
         $conn = $this->connection();
          
-        if(mysqli_query($conn, $sql)){
-            echo "First name changed successfully!";
-        } else{
-            echo "ERROR: Hush! Sorry $sql. "
-                . mysqli_error($conn);
+        if ($conn->query($select)->num_rows > 0 && $conn->query($sql)) {
+            echo "Record for first name changed from '$fname' to '$change' updated successfully!";
+        } else {
+            echo "There was an error updating a record!";
         }
          
-        // Close connection
-        mysqli_close($conn);
+    }
+
+    public function deleteAccount(int $id): void
+    {
+        $sql = "DELETE FROM accounts WHERE userID = $id";
+        $select = "SELECT * FROM accounts WHERE userID = $id";
+        $conn = $this->connection();
+
+        if ($conn->query($select)->num_rows > 0 && $conn->query($sql)) {
+            echo "The row entry has been deleted successfully!";
+        } else {
+            echo "There was an error deleting your record!";
+        }
     }
 
     /**
