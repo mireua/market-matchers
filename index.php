@@ -6,21 +6,35 @@
 </head>
 
 <body>
+<body>
+      <center>
+         <h1>MarketMatchers</h1>
+         <form action="login.php" method="post">
+             
+<p>
+               <label for="firstName">First Name:</label>
+               <input type="text" name="first_name" id="firstName">
+            </p>
  
-<?php
-include "db.php";
+             
+<p>
+               <label for="lastName">Last Name:</label>
+               <input type="text" name="last_name" id="lastName">
+            </p>
+ 
+             
+<p>
+               <label for="emailAddress">Email Address:</label>
+               <input type="text" name="email" id="emailAddress">
+            </p>
 
-$sql = "SELECT userID, fname, lname, email FROM accounts";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
-    echo "ID: " . $row["userID"]. " - Name: " . $row["fname"]. " " . $row["lname"]. " ". "Email: ". $row["email"]. "<br>";
-  }
-} else {
-  echo "0 results";
-}
-?>
+            <p>
+               <label for="password">Password:</label>
+               <input type="password" name="password" id="password">
+            </p>
+ 
+            <input type="submit" value="Register">
+         </form>
+      </center>
 </body>
 </html>
