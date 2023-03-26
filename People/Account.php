@@ -1,26 +1,43 @@
 <?php
 namespace People;
-abstract class Account {
-    public string $fname;
-    public string $lname;
-    public string $email;
-    protected string $password;
-    public bool $isAdmin;
+
+class Account extends \db{
 
     /**
      * @return string
      */
-    public function getFname(): string
+    public function getFname(string $name): void
     {
-        return $this->fname;
+        $sql = "SELECT * FROM accounts WHERE fname = '$name'";
+        $result = $this->connection()->query($sql);
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+            echo $row['fname']. " " .$row['lname']. " " . $row['email']. " ". "<br>";
+            }
+          } else {
+            echo $name . " was not found!";
+        }
     }
 
     /**
      * @param string $fname
      */
-    public function setFname(string $fname): void
+    public function setFname(string $fname, string $change): void
     {
-        $this->fname = $fname;
+        $sql = "UPDATE accounts set fname = '$change' WHERE fname = '$fname' ";
+        $conn = $this->connection();
+         
+        if(mysqli_query($conn, $sql)){
+            echo "First name changed successfully!";
+        } else{
+            echo "ERROR: Hush! Sorry $sql. "
+                . mysqli_error($conn);
+        }
+         
+        // Close connection
+        mysqli_close($conn);
     }
 
     /**
