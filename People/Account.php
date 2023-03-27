@@ -28,7 +28,6 @@ class Account extends \db{
         } else {
             echo "There was an error updating a record!";
         }
-         
     }
 
     public function deleteAccount(int $id): void
