@@ -22,7 +22,7 @@
         $email = $_REQUEST['email'];
         $password = $_REQUEST['password'];
          
-        $sql = "INSERT INTO accounts VALUES (null, '$first_name','$last_name','$email', '$password', 1)";
+        $sql = "INSERT INTO accounts VALUES (null, '$first_name','$last_name','$email', '$password')";
          
         if(mysqli_query($conn, $sql)){
             echo "Data imported successfully!";

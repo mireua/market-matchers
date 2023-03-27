@@ -2,8 +2,6 @@
 
 namespace Deals;
 
-use Library\Store_Name;
-
 class Offer
 {
     public string $description;
