@@ -9,32 +9,21 @@
 <body>
       <center>
          <h1>MarketMatchers</h1>
-         <form action="register.php" method="post">
+         <form action="logscript.php" method="post">
              
             <p>
-               <label for="firstName">First Name:</label>
-               <input type="text" name="first_name" id="firstName">
-            </p>
- 
-             
-            <p>
-               <label for="lastName">Last Name:</label>
-               <input type="text" name="last_name" id="lastName">
-            </p>
- 
-             
-            <p>
-               <label for="emailAddress">Email Address:</label>
-               <input type="text" name="email" id="emailAddress">
+               <label for="email">E-mail:</label>
+               <input type="text" name="email" id="email" required>
             </p>
 
             <p>
                <label for="password">Password:</label>
-               <input type="password" name="password" id="password">
+               <input type="password" name="password" id="password" required>
             </p>
  
-            <input type="submit" value="Register">
+            <input type="submit" value="Login">
          </form>
+         <p>Don't have an account?</p> <a href="register.php">Register</a>
       </center>
 </body>
 </html>
