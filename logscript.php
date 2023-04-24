@@ -41,6 +41,8 @@
     if($email == $dbemail && $password == $dbpassword)  
     {  
         echo "You have succesfully logged in!";
+        session_start();
+        header('Location: demo.php');
     }  
     } else {  
         echo "Invalid username or password!";  

@@ -26,7 +26,7 @@
     $first_name =  $_REQUEST['first_name'];
     $last_name = $_REQUEST['last_name'];
     $email = $_REQUEST['email'];
-    $password = password_hash($_REQUEST['password'], PASSWORD_DEFAULT);
+    $password = $_REQUEST['password'];
 
     // Construct the SQL query to insert the new account into the 'accounts' table
     $sql = "INSERT INTO accounts VALUES (null, '$first_name','$last_name','$email', '$password')";
@@ -35,7 +35,7 @@
     if(mysqli_query($conn, $sql)){
         // If the query was successful, print a success message
         echo "Data imported successfully!";
-    } else{
+    }else{
         // If the query failed, print an error message and include the specific error message returned by MySQL
         echo "ERROR: Hush! Sorry $sql. " . mysqli_error($conn);
     }
