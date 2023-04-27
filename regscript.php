@@ -34,7 +34,7 @@
     // Execute the SQL query using the 'mysqli_query()' function, and check if it was successful
     if(mysqli_query($conn, $sql)){
         // If the query was successful, print a success message
-        echo "Data imported successfully!";
+        header('Location: index.php');
     }else{
         // If the query failed, print an error message and include the specific error message returned by MySQL
         echo "ERROR: Hush! Sorry $sql. " . mysqli_error($conn);
