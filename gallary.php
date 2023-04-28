@@ -9,7 +9,7 @@
 <body>
 <center>
 
-    <h3>You are logged in as <?php
+    <h3><?php
         session_start();
         if(isset($_SESSION['name'])) {
             echo "Hello, " . $_SESSION['name'];
