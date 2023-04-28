@@ -1,7 +1,7 @@
 <?php
 namespace Library;
 
- abstract class Products extends \products {
+  class Products extends \products {
 
      public function getItemName(string $itemName): void
      {
