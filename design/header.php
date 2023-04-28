@@ -77,18 +77,23 @@ if($curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"]
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-          <li class="nav-item">
-              <a class="nav-link" href="#">Products</a>
-            </li>
+          <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) { ?>
             <li class="nav-item">
+              <a class="nav-link" href="../adminpanel.php">Admin Panel</a>
+            </li>
+          <?php } ?>
+            <li class="nav-item <?php echo in_array(basename($_SERVER['PHP_SELF']), $page_names) ? 'd-none' : ''; ?>">
+              <a class="nav-link" href="../productpage.php">Products</a>
+            </li>
+            <li class="nav-item <?php echo in_array(basename($_SERVER['PHP_SELF']), $page_names) ? 'd-none' : ''; ?>">
               <a class="nav-link" href="#">Shopping List</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Logout</a>
+            <li class="nav-item <?php echo in_array(basename($_SERVER['PHP_SELF']), $page_names) ? 'd-none' : ''; ?>">
+              <a class="nav-link" href="https://tracker.gg/valorant/profile/riot/messo%230161/overview">About Us</a>
             </li>
           </ul>
         </div>
-    </nav>
+      </nav>
+    </div>
+</body>
+</html>

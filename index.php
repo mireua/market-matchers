@@ -57,10 +57,15 @@ $_SESSION["logged_in"] = false;
     </style>
   </head>
   <body>
-    <?php include 'design/header.php'; ?>
+    <?php include 'Design/header.php'; ?>
     <div class="container">
       <form class="login-form" action="Scripts/logscript.php" method="post">
         <center><h1>Welcome back! Please login.</h1></center>
+        <?php if (isset($_GET['error'])) { ?>
+          <div class="alert alert-danger" role="alert">
+            <?php echo $_GET['error']; ?>
+          </div>
+        <?php } ?>
         <div class="form-group">
           <label for="email">Email address</label>
           <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
@@ -73,6 +78,6 @@ $_SESSION["logged_in"] = false;
         <center><p>Don't have an account? <a href="register.php">Register</a></p></center>
       </form>
     </div>
-    <?php include 'design/footer.php'; ?>
+    <?php include 'Design/footer.php'; ?>
   </body>
 </html>

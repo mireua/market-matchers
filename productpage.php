@@ -52,7 +52,7 @@
     </style>
 </head>
 <body>
-<?php include 'design/header.php'; ?>
+<?php include 'Design/header.php'; ?>
     <div id="product-container">
         <?php
         include "Library/Products.php";
