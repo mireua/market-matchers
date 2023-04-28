@@ -1,33 +1,26 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>MarketMatchers</title>
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>MM - Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+      h1 {
+         overflow: hidden; /* Ensures the content is not revealed until the animation */
+         border-right: .15em solid orange; /* The typwriter cursor */
+         white-space: nowrap; /* Keeps the content on a single line */
+         margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+         animation: 
+            typing 3.5s steps(40, end),
+            blink-caret .75s step-end infinite;
+      }     
 
-<body>
-<body>
-      <center>
-         <h1>MarketMatchers</h1>
-         <form action="logscript.php" method="post">
-             
-            <p>
-               <label for="email">E-mail:</label>
-               <input type="text" name="email" id="email" required>
-            </p>
+         /* The typing effect */
+         @keyframes typing {
+         from { width: 0 }
+         to { width: 80% }
+         }
 
-<<<<<<< Updated upstream
-            <p>
-               <label for="password">Password:</label>
-               <input type="password" name="password" id="password" required>
-            </p>
- 
-            <input type="submit" value="Login">
-         </form>
-         <p>Don't have an account?</p> <a href="register.php">Register</a>
-      </center>
-</body>
-=======
          /* The typewriter cursor effect */
          @keyframes blink-caret {
          from, to { border-color: transparent }
@@ -83,5 +76,4 @@
     </div>
     <?php include 'Design/footer.php'; ?>
   </body>
->>>>>>> Stashed changes
 </html>
