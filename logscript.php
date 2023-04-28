@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html>
- 
-<head>
-    <title>Register</title>
-</head>
- 
-<body>
-    <center>
-    <?php
-    // Import the 'db.php' file, which contains the database connection details and code
-    require "db.php";
+<?php
+include "db.php";
+session_start();
 
     // Create a new instance of the 'db' class, which establishes a connection to the database
     $db = new db;
@@ -17,42 +8,25 @@
     // Get the connection object from the 'db' class instance
     $conn = $db->connection();
 
-    // If the connection object is 'false', output an error message and stop the script execution
-    if($conn === false){
-        die("ERROR: Could not connect to the database!");
-    }
-        
-    // Get the variables from the HTML form submitted via POST method
-    $email =  $_REQUEST['email'];
-    $password = $_REQUEST['password'];
-    
-    //rewrite validation
-    $query = $conn->prepare("SELECT * FROM accounts WHERE  email = '$email' AND password = '$password'");
-    $query->execute();
-    $numrows = $query->rowCount();
-    $result = $query->fetchAll(PDO::FETCH_ASSOC);
-    if($numrows!=0)  
-    {  
-   
-    foreach ($result as $row) {
-        $dbemail=$row['email'];  
-        $dbpassword=$row['password'];
-    } 
-  
-    if($email == $dbemail && $password == $dbpassword)  
-    {  
-        echo "You have succesfully logged in!";
-        session_start();
-        header('Location: demo.php');
-    }  
-    } else {  
-        echo "Invalid username or password!";  
-    }  
+$email_error = $password_error = "";
 
-    // Close the database connection
-    $conn = null;
-    ?>
-    </center>
-</body>
- 
-</html>
+if (isset($_POST['email']) && isset($_POST['password'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $query = $conn->prepare("SELECT * FROM accounts WHERE email = ?");
+    $query->execute([$email]);
+    $user = $query->fetch();
+
+    if ($user && $user['password'] == $password) {
+        header("Location: productpage.php");
+        exit();
+    } else {
+        if (!$user) {
+            $email_error = "Invalid email address";
+        } else {
+            $password_error = "Invalid password";
+        }
+    }
+}
+?>
