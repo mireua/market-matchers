@@ -1,27 +1,54 @@
 <?php
 namespace Library;
+use PDO;
 
- abstract class Products extends \products {
+class Products{
 
-     public function getItemName(string $itemName): void
-     {
-         // Construct a SQL query to retrieve all rows in the 'products' table where the 'itemName' column matches the provided name
-         $sql = "SELECT * FROM products WHERE itemName = '$itemName'";
+    public string $itemName;
+    public string $itemPrice;
+    public Store_Name $store_Name;
+    public bool $isAddedTolist;
+    public string $description;
+    
+    public function createItem($name, $price, $description) {
+        $db = new \db;
+        $conn = $db->connection();
+        
+        $query = $conn->prepare("INSERT INTO products VALUES (null, '$name','$price', '$description')");
 
-         // Execute the SQL query using the established database connection
-         $result = $this->connection()->query($sql);
+        $query2 = $conn->prepare("SELECT * FROM products WHERE itemName = '$name'");
+        $query2->execute();
+        $numrows = $query2->rowCount();
 
-         // Check if any rows were returned from the SQL query
-         if ($result->num_rows > 0) {
-             // If there are rows, loop through each row and print out the first name, last name, and email address
-             while($row = $result->fetch_assoc()) {
-                 echo$row['itemID']. " " .$row['itemName']. " " .$row['itemPrice']. " " . $row['description']. " ". "<br>";
-             }
-         } else {
-             // If no rows were returned from the SQL query, print out a message indicating that the provided name was not found
-             echo $itemName . " was not found!";
-         }
-     }
+        if ($query->execute() && $numrows == 0){
+            echo "Your item has beeen created.";
+        } else if ($query->execute() && $numrows > 0){
+            echo "There is an existing item with this name already!";
+        } else {
+            echo "There was error creating your item!";
+        }
+    }
+    
+    public function getItemName(string $itemName): void
+    {
+        $db = new \db;
+        $conn = $db->connection();
+        
+        $query = $conn->prepare("SELECT * FROM products WHERE itemName = '$itemName'");
+        $query->execute();
+        $numrows = $query->rowCount();
+
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($numrows > 0) {
+            foreach ($result as $row) {
+                echo $row['fname']. " " .$row['lname']. " " . $row['email']. " ". "<br>";
+            }
+            } else {
+            echo $itemName . " was not found!";
+            }
+            $conn = null;
+    }
 
      public function setItemName(string $itemName, string $change): void
      {
@@ -44,7 +71,7 @@ namespace Library;
          }
      }
 
-     public function deleteAccount(int $id): void
+     public function deleteItem(int $id): void
      {
          // Construct a SQL query to delete the row in the 'accounts' table where the 'userID' column matches the provided $id
          $sql = "DELETE FROM products WHERE itemID = $id";
@@ -65,94 +92,25 @@ namespace Library;
          }
      }
 
-
-     public string $itemName;
-    public string $itemPrice;
-    public Store_Name $store_Name;
-    public bool $isAddedTolist;
-    public string $description;
-
-    /**
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param string $description
-     */
-    public function setDescription(string $description): void
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return string
-     */
-
-   /* public function getItemName(): string
-    {
-        return $this->itemName;
-    }
-
-
-    /**
-     * @param string $itemName
-     /
-    public function setItemName(string $itemName): void
-    {
-        $this->itemName = $itemName;
-    }
-    */
-
-    /**
-     * @return string
-     */
-    public function getItemPrice(): string
-    {
-        return $this->itemPrice;
-    }
-
-    /**
-     * @param string $itemPrice
-     */
-    public function setItemPrice(string $itemPrice): void
-    {
-        $this->itemPrice = $itemPrice;
-    }
-
-    /**
-     * @return Store_Name
-     */
-    public function getStoreName(): Store_Name
-    {
-        return $this->store_Name;
-    }
-
-    /**
-     * @param Store_Name $store_Name
-     */
-    public function setStoreName(Store_Name $store_Name): void
-    {
-        $this->store_Name = $store_Name;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isAddedTolist(): bool
-    {
-        return $this->isAddedTolist;
-    }
-
-    /**
-     * @param bool $isAddedTolist
-     */
-    public function setIsAddedTolist(bool $isAddedTolist): void
-    {
-        $this->isAddedTolist = $isAddedTolist;
+    public function getAllProducts(){
+        $db = new \db;
+        $conn = $db->connection();
+        
+        $query = $conn->prepare('SELECT * FROM products');
+        $query->execute();
+        
+        // Output HTML for each product
+        while ($row = $query->fetch()) {
+            $prodName = $row['itemName'];
+            $prodPrice = $row['itemPrice'];
+            //$prodIMG = $row['itemIMG'];
+            
+            echo '<div class="product">';
+            echo '<img src="' . /*$productIMG*/ '" alt="' . $prodName . '">';
+            echo '<h2>' . $prodName . '</h2>';
+            echo '<p class="price">' . "€" .$prodPrice . '</p>';
+            echo '</div>';
+        }
     }
 
     public function __toString(): string

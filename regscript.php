@@ -38,7 +38,7 @@
         // If the query was successful, print a success message
         $query = $conn->prepare("INSERT INTO accounts VALUES (null, '$first_name','$last_name','$email', '$password')");
         $query->execute();
-        echo "Account created successfully!";
+        header("Location: index.php");
     } else if ($numrows > 0){
         // If the query failed, print an error message and include the specific error message returned by MySQL
         echo "Someone already has an account with this e-mail!";

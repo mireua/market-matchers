@@ -28,13 +28,5 @@ if(isset($_POST['delete']))
     $account->deleteAccount((int)$id);
 }
 
-/* echo "Demonstration of Getting first names:" . "<br>";
-$account->getFname("James");
- */
-/* echo "Demonstration of Setting first names:" . "<br>";
-$account->setFname("James", "Samuel");  */
-
-/* echo "Demonstration of Deleting Accounts:" . "<br>";
-$account->deleteAccount(9);  */
 
 ?>

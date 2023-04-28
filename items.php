@@ -26,6 +26,11 @@
             <input type="text" name="description" id="description" required>
         </p>
 
+        <p>
+            <label for="macros">Macros:</label>
+            <input type="text" name="macros" id="macros" required>
+        </p>
+
 
 
         <input type="submit" value="Create">

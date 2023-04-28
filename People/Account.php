@@ -9,6 +9,7 @@ class Account extends \db{
     
         $db = new \db;
         $conn = $db->connection();
+        
         $query = $conn->prepare("SELECT * FROM accounts WHERE fname = '$name'");
         $query->execute();
         $numrows = $query->rowCount();
@@ -72,53 +73,6 @@ class Account extends \db{
         }
     }
 
-    /**
-     * @return string
-     */
-    public function getLname(): string
-    {
-        return $this->lname;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isAdmin(): bool
-    {
-        return $this->isAdmin;
-    }
-
-    /**
-     * @param bool $isAdmin
-     */
-    public function setIsAdmin(bool $isAdmin): void
-    {
-        $this->isAdmin = $isAdmin;
-    }
-
-    /**
-     * @param string $lname
-     */
-    public function setLname(string $lname): void
-    {
-        $this->lname = $lname;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param string $email
-     */
-    public function setEmail(string $email): void
-    {
-        $this->email = $email;
-    }
 
     public function __toString()
     {
