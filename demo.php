@@ -7,7 +7,7 @@
 
 <body>
     <center>
-    <form id="accountlookup" method="post" action="demoscript.php">
+    <form id="accountlookup" method="post" action="Scripts/demoscript.php">
     <h1>Account Lookup</h1>
     <label for="fname">Name:</label>
     <input type="text" id="name" name="name">

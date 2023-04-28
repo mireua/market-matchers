@@ -1,3 +1,7 @@
+<?php
+$_SESSION["is_admin"] = false;
+$_SESSION["logged_in"] = false;
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -55,7 +59,7 @@
   <body>
     <?php include 'design/header.php'; ?>
     <div class="container">
-      <form class="login-form" action="logscript.php" method="post">
+      <form class="login-form" action="Scripts/logscript.php" method="post">
         <center><h1>Welcome back! Please login.</h1></center>
         <div class="form-group">
           <label for="email">Email address</label>

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>MM - Login</title>
+    <title>MM - Register</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
       h1 {
@@ -53,7 +53,7 @@
   <body>
     <?php include 'design/header.php'; ?>
     <div class="container">
-      <form class="login-form" action="regscript.php" method="post">
+      <form class="login-form" action="Scripts/regscript.php" method="post">
         <center><h1>Hi! What's your name?</h1></center>
         <div class="form-group">
           <label for="first_name">First Name</label>

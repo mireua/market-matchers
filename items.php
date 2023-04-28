@@ -6,7 +6,7 @@
 <body>
 <center>
     <h1>MarketMatchers</h1>
-    <form action="itemscript.php" method="post">
+    <form action="Scripts/itemscript.php" method="post">
 
 
         <p>
@@ -29,6 +29,11 @@
         <p>
             <label for="macros">Macros:</label>
             <input type="text" name="macros" id="macros" required>
+        </p>
+
+        <p>
+            <label for="image">Image:</label>
+            <input type="text" name="image" id="image" required>
         </p>
 
 

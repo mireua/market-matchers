@@ -92,23 +92,23 @@ class Products{
          }
      }
 
-    public function getAllProducts(){
+     public function getAllProducts(){
         $db = new \db;
         $conn = $db->connection();
-        
+
         $query = $conn->prepare('SELECT * FROM products');
         $query->execute();
-        
+
         // Output HTML for each product
         while ($row = $query->fetch()) {
             $prodName = $row['itemName'];
             $prodPrice = $row['itemPrice'];
-            //$prodIMG = $row['itemIMG'];
-            
+            $prodIMG = $row['image'];
+
             echo '<div class="product">';
-            echo '<img src="' . /*$productIMG*/ '" alt="' . $prodName . '">';
+            echo '<img src="' . $prodIMG .'" alt="' . $prodName . ' . "width=200" . "height= 200" ">';
             echo '<h2>' . $prodName . '</h2>';
-            echo '<p class="price">' . "€" .$prodPrice . '</p>';
+            echo '<button>Compare</button>';
             echo '</div>';
         }
     }

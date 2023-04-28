@@ -8,11 +8,11 @@ class Food
     //info as in macros/calories
     public string $macros;
 
-    public function createFood($name, $price, $description, $macros) {
+    public function createFood($name, $price, $description, $macros, $image) {
         $db = new \db;
         $conn = $db->connection();
         
-        $query = $conn->prepare("INSERT INTO products VALUES (null, '$name','$price', '$description')");
+        $query = $conn->prepare("INSERT INTO products VALUES (null, '$name','$price', '$description', '$image')");
 
 
         $query2 = $conn->prepare("SELECT * FROM products WHERE itemName = '$name'");
@@ -30,7 +30,7 @@ class Food
             $query4 = $conn->prepare("INSERT INTO food VALUES ('$result', '$macros')");
             $query4->execute();
 
-            echo "You have added your FOOD item!";
+            echo "You have added your item!";
 
         } else if ($numrows > 0){
             echo "There is an existing item with this name already!";
