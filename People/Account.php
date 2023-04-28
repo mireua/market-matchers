@@ -66,6 +66,33 @@ class Account extends \db{
     }
 
     /**
+     * @return bool
+     */
+    public function isAdmin(int $id): void
+    {
+        $sql = "ALTER TABLE admin AUTO_INCREMENT = 1";
+
+        $get = "SELECT DISTINCT fname FROM accounts WHERE userID = $id";
+
+        $sing = "SELECT userID FROM admin WHERE userID = $id";
+
+        $insert = "INSERT INTO admin (adminID, userID)
+                    VALUES (null, $id)";
+
+        $conn = $this->connection();
+
+        if ($conn->query($get)->num_rows > 0 && $conn->query($sql) && $conn->query($insert) && $conn->query($sing)->num_rows == 1){
+            // If the delete query was successful and there are matching rows, print a success message
+            echo "User has been made an Admin!!";
+        } else {
+            // If the delete query failed or there are no matching rows, print an error message
+            echo "There was an error creating admin!";
+        }
+        //return $this->isAdmin;
+    }
+
+
+    /**
      * @return string
      */
     public function getLname(): string
@@ -73,13 +100,7 @@ class Account extends \db{
         return $this->lname;
     }
 
-    /**
-     * @return bool
-     */
-    public function isAdmin(): bool
-    {
-        return $this->isAdmin;
-    }
+
 
     /**
      * @param bool $isAdmin

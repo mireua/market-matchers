@@ -1,16 +1,16 @@
 <!doctype html>
-<html>
+<html lang="">
 <head>
 <meta charset="UTF-8">
 <title>MarketMatchers</title>
 </head>
 
 <body>
-    <center>
+    <div style="text-align: center;">
     <form id="accountlookup" method="post" action="demoscript.php">
     <h1>Account Lookup</h1>
     <label for="fname">Name:</label>
-    <input type="text" id="name" name="name">
+        <label for="name"></label><input type="text" id="name" name="name">
     <br>
     <br>
     <input type="submit" value="Lookup">
@@ -38,7 +38,17 @@
     <br>
     <br>
     <input type="submit" value="Delete">
-    </center>
-</form>
+    </div>
+
+    <div style="text-align: center;">
+    <form id="admin" method="post" action="demoscript.php">
+        <h1>Make Admin</h1>
+        <label for="admin">ID of Account:</label>
+        <input type="text" id="admin" name="admin">
+        <br>
+        <br>
+        <input type="submit" value="Update">
+        </div>
+
 </body>
 </html>

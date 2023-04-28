@@ -28,6 +28,12 @@ if(isset($_POST['delete']))
     $account->deleteAccount((int)$id);
 }
 
+if(isset($_POST['admin']))
+{
+    $id = $_POST['admin'];
+    $account->isAdmin((int)$id);
+}
+
 /* echo "Demonstration of Getting first names:" . "<br>";
 $account->getFname("James");
  */
