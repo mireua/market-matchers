@@ -19,7 +19,7 @@
 
     // If the connection object is 'false', output an error message and stop the script execution
     if($conn === false){
-        die("ERROR: Could not connect. ". mysqli_connect_error());
+        die("ERROR: Could not connect to the database!");
     }
         
     // Get the variables from the HTML form submitted via POST method
@@ -27,16 +27,17 @@
     $password = $_REQUEST['password'];
     
     //rewrite validation
-    $query = "SELECT * FROM accounts WHERE  email = '$email' AND password = '$password'";
-    $result = $conn->query($query);
-    $numrows = mysqli_num_rows($result);  
+    $query = $conn->prepare("SELECT * FROM accounts WHERE  email = '$email' AND password = '$password'");
+    $query->execute();
+    $numrows = $query->rowCount();
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
     if($numrows!=0)  
     {  
-    while($row = $result->fetch_assoc())  
-    {  
-    $dbemail=$row['email'];  
-    $dbpassword=$row['password'];
-    }  
+   
+    foreach ($result as $row) {
+        $dbemail=$row['email'];  
+        $dbpassword=$row['password'];
+    } 
   
     if($email == $dbemail && $password == $dbpassword)  
     {  
@@ -49,7 +50,7 @@
     }  
 
     // Close the database connection
-    mysqli_close($conn);
+    $conn = null;
     ?>
     </center>
 </body>
