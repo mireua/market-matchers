@@ -29,19 +29,25 @@
     $password = $_REQUEST['password'];
 
     // Construct the SQL query to insert the new account into the 'accounts' table
-    $sql = "INSERT INTO accounts VALUES (null, '$first_name','$last_name','$email', '$password')";
+    $query2 = $conn->prepare("SELECT * FROM accounts WHERE email = '$email'");
+    $query2->execute();
+    $numrows = $query2->rowCount();
 
     // Execute the SQL query using the 'mysqli_query()' function, and check if it was successful
-    if(mysqli_query($conn, $sql)){
+    if($numrows == 0){
         // If the query was successful, print a success message
-        echo "Data imported successfully!";
-    }else{
+        $query = $conn->prepare("INSERT INTO accounts VALUES (null, '$first_name','$last_name','$email', '$password')");
+        $query->execute();
+        echo "Account created successfully!";
+    } else if ($numrows > 0){
         // If the query failed, print an error message and include the specific error message returned by MySQL
-        echo "ERROR: Hush! Sorry $sql. " . mysqli_error($conn);
+        echo "Someone already has an account with this e-mail!";
+    } else {
+        echo "There was an error making your account.";
     }
 
     // Close the database connection
-    mysqli_close($conn);
+    $conn = null;
     ?>
     </center>
 </body>
