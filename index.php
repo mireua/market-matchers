@@ -1,6 +1,8 @@
 <?php
-$_SESSION["is_admin"] = false;
-$_SESSION["logged_in"] = false;
+  $_SESSION["is_admin"] = false;
+  $_SESSION["logged_in"] = false;
+  $_SESSION["name"] = null;
+  $_SESSION["list"] = null;
 ?>
 <!DOCTYPE html>
 <html lang="en">

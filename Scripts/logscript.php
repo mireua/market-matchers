@@ -20,6 +20,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $numrows = $query->rowCount();
     $user = $query->fetch();
     $userID = $user['userID'];
+    $name = $user['fname'];
 
     if ($numrows > 0) {
         if ($password == $user['password']){
@@ -32,9 +33,13 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             if($numrows2 > 0){
                 $_SESSION["is_admin"] = true;
                 $_SESSION["logged_in"] = true;
+                $_SESSION["name"] = $name;
+                $_SESSION["list"] = array();
                 header("Location: ../productpage.php");
             } else {
                 $_SESSION["logged_in"] = true;
+                $_SESSION["name"] = $name;
+                $_SESSION["list"] = array();
                 header("Location: ../productpage.php");
             }
 

@@ -121,6 +121,8 @@ button[type="submit"]:hover {
 			</select><br><br>
 			<label for="productImage">Product Image:</label>
 			<input type="text" id="productImage" name="productImage" required><br><br>
+			<label for="productCategory">Product Category:</label>
+			<input type="text" id="productCategory" name="productCategory" required><br><br>
 			<button type="submit" name="create_product">Create Product</button>
 		</form>
 	</div>
@@ -133,8 +135,9 @@ button[type="submit"]:hover {
 		$type = $_POST['productType'];
 		$image = $_POST['productImage'];
 		$store = $_POST['productStore'];
+		$category = $_POST['productCategory'];
 		
-		$product->createItem($name, $price, $desc, $store, $type, $image);
+		$product->createItem($name, $price, $desc, $store, $type, $image,$category);
 	}?>
 
     <div class="panel">

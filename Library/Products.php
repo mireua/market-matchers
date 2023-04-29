@@ -10,7 +10,7 @@ class Products{
     public bool $isAddedTolist;
     public string $description;
     
-    public function createItem($name, $price, $description, $store, $type, $image) {
+    public function createItem($name, $price, $description, $store, $type, $image, $category) {
         $db = new \db;
         $conn = $db->connection();
 
@@ -18,10 +18,16 @@ class Products{
         $query2->execute();
         $numrows = $query2->rowCount();
 
+        $categorysearch = $conn->prepare("SELECT * from categories WHERE categoryName = '$category'");
+        $categorysearch->execute();
+        $fetchcategory = $categorysearch->fetch();
+        $categoryresult = $fetchcategory['categoryID'];
+
         
     if ($numrows == 0){
         if($type == "food"){
-            $query = $conn->prepare("INSERT INTO products VALUES (null, '$name','$price', '$description', '$image', '$store')");
+            
+            $query = $conn->prepare("INSERT INTO products VALUES (null, '$name','$price', '$description', '$image', '$store','$categoryresult')");
             $query->execute();
             
             $select = $conn->prepare("SELECT * FROM products WHERE itemName = '$name' AND store = '$store'");
@@ -34,7 +40,8 @@ class Products{
                 echo '<div style="background-color: #4CAF50; color: white; text-align: center; padding: 10px;">Food Product Created!</div>';
             }
         } else {
-            $query = $conn->prepare("INSERT INTO products VALUES (null, '$name','$price', '$description', '$image', '$store')");
+            
+            $query = $conn->prepare("INSERT INTO products VALUES (null, '$name','$price', '$description', '$image', '$store','$categoryresult')");
             $query->execute();
             
             $select = $conn->prepare("SELECT * FROM products WHERE itemName = '$name' AND store = '$store'");
@@ -137,7 +144,7 @@ class Products{
         }
      }
 
-     public function getAllProducts(){
+    public function getAllProducts(){
         $db = new \db;
         $conn = $db->connection();
 
@@ -152,8 +159,32 @@ class Products{
             echo '<div class="product">';
             echo '<img src="' . $prodIMG .'" alt="' . $prodName . ' . "width=200" . "height= 200" ">';
             echo '<h2>' . $prodName . '</h2>';
-            echo '<button>Compare</button>';
+            echo '<a href="comparepage.php?'.$prodName.'"><button>Compare</button></a> ';
             echo '</div>';
+        }
+    }
+
+    public function getProductComparisons($product){
+        $db = new \db;
+        $conn = $db->connection();
+    
+        $catquery = $conn->prepare("SELECT categoryID FROM categories WHERE categoryName = '$product'");
+        $catquery->execute();
+        $result = $catquery->fetch();
+        $id = $result['categoryID'];
+    
+        $query = $conn->prepare("SELECT * FROM products WHERE category = $id ORDER BY itemPrice");
+        $query->execute();
+        
+    
+        while($row = $query->fetch()){
+            echo '<tr>';
+                echo '<td>' .$row['itemName']. '</td>';
+                echo '<td>' .$row['itemPrice']. '</td>';
+                echo '<td>' .$row['store']. '</td>';
+                echo '<td>' .$row['description']. '</td>';
+                echo '<td><a href="mylist.php?id=' . urlencode($row['itemID']). '"><button type="button" style="padding: 10px 20px; background-color: grey; color: white; border: none; border-radius: 5px; font-size: 16px;">Add to List</button></a></td>';
+            echo '</tr>';
         }
     }
 }

@@ -86,7 +86,7 @@ if($curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"]
               <a class="nav-link" href="../productpage.php">Products</a>
             </li>
             <li class="nav-item <?php echo in_array(basename($_SERVER['PHP_SELF']), $page_names) ? 'd-none' : ''; ?>">
-              <a class="nav-link" href="#">Shopping List</a>
+              <a class="nav-link" href="../mylist.php">Shopping List</a>
             </li>
             <li class="nav-item <?php echo in_array(basename($_SERVER['PHP_SELF']), $page_names) ? 'd-none' : ''; ?>">
               <a class="nav-link" href="https://tracker.gg/valorant/profile/riot/messo%230161/overview">About Us</a>

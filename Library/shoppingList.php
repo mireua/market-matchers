@@ -4,42 +4,17 @@ class shoppingList{
     public int $listQuantity;
     public float $totalCost;
 
-    /**
-     * @return int
-     */
-    public function getListQuantity(): int
-    {
-        return $this->listQuantity;
+    public function addtoList(){
+        $cid = urldecode($_GET['id']);
+    
+        array_push($_SESSION["list"],$cid);
     }
 
-    /**
-     * @param int $listQuantity
-     */
-    public function setListQuantity(int $listQuantity): void
-    {
-        $this->listQuantity = $listQuantity;
+    public function getProductComparisons(){
+        $listnumber = count($_SESSION['list']);
+        var_dump($_SESSION['list']);
+        /* for ($i = 0; $i < $listnumber; $i++){
+
+        }  */  
     }
-
-    /**
-     * @return float
-     */
-    public function getTotalCost(): float
-    {
-        return $this->totalCost;
-    }
-
-    /**
-     * @param float $totalCost
-     */
-    public function setTotalCost(float $totalCost): void
-    {
-        $this->totalCost = $totalCost;
-    }
-
-    public function __toString(): string
-    {
-        return "Number of Items: " . $this->listQuantity . " Total Cost: " . $this->totalCost;
-    }
-
-
 }
