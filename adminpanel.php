@@ -46,6 +46,7 @@
           <div class="card-body">
             <a href="../Admin/accountcrud.php" class="btn btn-primary btn-lg btn-block">Accounts</a>
             <a href="Admin/productcrud.php" class="btn btn-primary btn-lg btn-block">Products</a>
+            <a href="Admin/productcrud.php" class="btn btn-primary btn-lg btn-block">Categories</a>
             <form method="post">
               <?php if(isset($_POST["make-admin"])) { ?>
                 <!-- show the password field only if the "Make Admin" button is clicked -->
