@@ -34,8 +34,15 @@
     // Execute the SQL query using the 'mysqli_query()' function, and check if it was successful
     if(mysqli_query($conn, $sql)){
         // If the query was successful, print a success message
+<<<<<<< Updated upstream:regscript.php
         echo "Data imported successfully!";
     }else{
+=======
+        $query = $conn->prepare("INSERT INTO accounts VALUES (null, '$first_name','$last_name','$email', '$password')");
+        $query->execute();
+        header("Location: ../index.php");
+    } else if ($numrows > 0){
+>>>>>>> Stashed changes:Scripts/regscript.php
         // If the query failed, print an error message and include the specific error message returned by MySQL
         echo "ERROR: Hush! Sorry $sql. " . mysqli_error($conn);
     }
