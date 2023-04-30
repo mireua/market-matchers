@@ -1,8 +1,14 @@
 <?php
+  session_start();
+  if (isset($_SESSION)){
+    session_destroy();
+    session_start();
+}
+  
   $_SESSION["is_admin"] = false;
   $_SESSION["logged_in"] = false;
   $_SESSION["name"] = null;
-  $_SESSION["list"] = null;
+  $_SESSION["list"] = array();
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,11 +1,12 @@
 <?php
 	include "Library/shoppingList.php";
   	include "Scripts/db.php";
+
+	use Library\shoppingList;
   
   	$list = new shoppingList();
 
 	$list->addtoList();
-	$list->getProductComparisons();
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +82,7 @@
 		</thead>
 		<tbody>
 			<?php
-            
+            $list->getProductComparisons();
             ?>
 		</tbody>
 	</table>

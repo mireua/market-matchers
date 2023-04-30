@@ -1,10 +1,6 @@
 <?php
-
-if($curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1) == 'index.php' | $curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1) == 'register.php'){
-  session_reset();
-} else {
-  session_start();
-}
+error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT);
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -78,7 +74,7 @@ if($curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"]
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
           <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) { ?>
-            <li class="nav-item">
+            <li class="nav-item <?php echo in_array(basename($_SERVER['PHP_SELF']), $page_names) ? 'd-none' : ''; ?>">
               <a class="nav-link" href="../adminpanel.php">Admin Panel</a>
             </li>
           <?php } ?>
