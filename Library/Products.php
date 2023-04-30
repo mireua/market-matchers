@@ -180,7 +180,7 @@ class Products{
         while($row = $query->fetch()){
             echo '<tr>';
                 echo '<td>' .$row['itemName']. '</td>';
-                echo '<td>' .$row['itemPrice']. '</td>';
+                echo '<td>€' .$row['itemPrice']. '</td>';
                 echo '<td>' .$row['store']. '</td>';
                 echo '<td>' .$row['description']. '</td>';
                 echo '<td><a href="mylist.php?id=' . urlencode($row['itemID']). '"><button type="button" style="padding: 10px 20px; background-color: grey; color: white; border: none; border-radius: 5px; font-size: 16px;">Add to List</button></a></td>';

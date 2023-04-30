@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 $_SESSION["is_admin"] = false;
 $_SESSION["logged_in"] = false;
@@ -34,12 +35,12 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                 $_SESSION["is_admin"] = true;
                 $_SESSION["logged_in"] = true;
                 $_SESSION["name"] = $name;
-                $_SESSION["list"] = array();
+                $_SESSION['list']= array();
                 header("Location: ../productpage.php");
             } else {
                 $_SESSION["logged_in"] = true;
                 $_SESSION["name"] = $name;
-                $_SESSION["list"] = array();
+                $_SESSION['list']= array();
                 header("Location: ../productpage.php");
             }
 
